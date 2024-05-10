@@ -2,11 +2,17 @@ require("dotenv").config();
 require("./config/db.connection.js");
 const { PORT } = process.env;
 const express = require("express");
-
 const app = express();
+const cors = require("cors");
+const morgan = require("morgan");
 
-app.get("/", (req, res) => {
-  res.send("bet server connected");
-});
+const betRouter = require("./routes/bets");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
+
+app.use("/bets", betRouter);
 
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
