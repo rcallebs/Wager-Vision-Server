@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 const BetSchema = new Schema(
   {
+    pick: String,
+    betType: String,
     sport: String,
     event: String,
-    betType: String,
+    commenceTime: Date,
     stakeAmount: Number,
     odds: Number,
     outcome: String,
