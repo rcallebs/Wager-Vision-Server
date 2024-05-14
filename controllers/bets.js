@@ -21,7 +21,7 @@ const create = async (req, res, next) => {
   // console.log('bet received', req.body);
   // try {
   //   res.json(await Bet.create(req.body));
-  console.log("Received data:", req.body); // Log the received data
+  console.log("Received data:", req.payload); // Log the received data
   try {
     console.log(req.locals);
     req.body.userId = req.user;
