@@ -10,7 +10,7 @@ const BetSchema = new Schema(
     commenceTime: Date,
     stakeAmount: Number,
     odds: Number,
-    outcome: String,
+    outcome: { type: String, default: "ytbd" },
     open: { type: Boolean, default: true },
     dateTimePlaced: Date,
   },
