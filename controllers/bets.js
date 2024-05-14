@@ -18,8 +18,14 @@ const show = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
+  // console.log('bet received', req.body);
+  // try {
+  //   res.json(await Bet.create(req.body));
+  console.log("Received data:", req.body); // Log the received data
   try {
-    res.json(await Bet.create(req.body));
+    const newBet = await Bet.create(req.body);
+    console.log("Created bet:", newBet); // Log the created bet document
+    res.json(newBet);
   } catch (error) {
     res.status(400).json(error);
   }

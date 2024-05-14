@@ -5,9 +5,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
+const apiKey = process.env.API_KEY;
 
 const betRouter = require("./routes/bets");
 const authRouter = require("./routes/AuthRouter.js");
+const apiRouter = require("./routes/theOddsAPI.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,5 +18,6 @@ app.use(morgan("dev"));
 
 app.use("/bets", betRouter);
 app.use("/auth", authRouter);
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));

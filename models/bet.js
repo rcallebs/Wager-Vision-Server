@@ -11,7 +11,7 @@ const BetSchema = new Schema(
     stakeAmount: Number,
     odds: Number,
     outcome: String,
-    open: Boolean,
+    open: { type: Boolean, default: true },
     dateTimePlaced: Date,
   },
   { timestamps: true }
