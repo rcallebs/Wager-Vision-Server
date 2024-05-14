@@ -18,21 +18,35 @@ const show = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
-  console.log("Received data:", req.body);
+  // console.log('bet received', req.body);
+  // try {
+  //   res.json(await Bet.create(req.body));
+  console.log("Received data:", req.body); // Log the received data
   try {
-    const newBet = new Bet({
-      ...req.body,
-      userId: req.user._id, // Attach the userId from the request
-    });
-    await newBet.save();
+    const newBet = await Bet.create(req.body);
+    console.log("Created bet:", newBet); // Log the created bet document
     res.json(newBet);
-    // const newBet = await Bet.create(req.body);
-    // // console.log("Created bet:", newBet);
-    // res.json(newBet);
   } catch (error) {
     res.status(400).json(error);
   }
 };
+
+// const create = async (req, res, next) => {
+//   console.log("Received data:", req.body);
+//   try {
+//     const newBet = new Bet({
+//       ...req.body,
+//       userId: req.user.id, // Attach the userId from the request
+//     });
+//     await newBet.save();
+//     res.json(newBet);
+//     // const newBet = await Bet.create(req.body);
+//     // // console.log("Created bet:", newBet);
+//     // res.json(newBet);
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// };
 
 const destroy = async (req, res, next) => {
   try {

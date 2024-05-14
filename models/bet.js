@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const BetSchema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    // userId: { type: Schema.Types.ObjectId, ref: "User" },
     pick: String,
     betType: String,
     sport: String,
