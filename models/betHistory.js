@@ -7,7 +7,6 @@ const BetHistorySchema = new Schema(
     betIds: [{ type: Schema.Types.ObjectId, ref: "Bet" }],
     totalBets: Number,
     totalStake: Number,
-    outcome: Number,
     totalWinnings: Number,
     Profit: Number,
   },

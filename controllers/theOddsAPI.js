@@ -49,7 +49,7 @@ const getNFLOdds = async (req, res) => {
   const {
     sportKey = "americanfootball_nfl",
     regions = "us",
-    markets = "h2h",
+    markets = "h2h,spreads",
     oddsFormat = "american",
     dateFormat = "iso",
   } = req.query;
@@ -71,11 +71,14 @@ const getNFLOdds = async (req, res) => {
     console.log("Remaining requests", response.headers["x-requests-remaining"]);
     console.log("Used requests", response.headers["x-requests-used"]);
   } catch (error) {
-    res.status(error.response.status).json(error.response.data);
+    res
+      .status(error.response?.status || 500)
+      .json(error.response?.data || { error: "An error occurred" });
   }
 };
 
 module.exports = {
   getSports,
   getOdds,
+  getNFLOdds,
 };
