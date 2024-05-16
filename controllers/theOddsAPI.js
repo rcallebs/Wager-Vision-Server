@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const apiKey = process.env.API_KEY;
 
-// get a list of in-season sports
+// get a list of in-season sports - this request is trash dont use it
 const getSports = async (req, res) => {
   try {
     const response = await axios.get("https://api.the-odds-api.com/v4/sports", {

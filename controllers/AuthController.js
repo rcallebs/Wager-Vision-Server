@@ -2,7 +2,6 @@ const { User } = require("../models");
 const middleware = require("../middleware");
 
 const Register = async (req, res) => {
-  // console.log(req.body);
   try {
     const { email, password, name } = req.body;
     let passwordDigest = await middleware.hashPassword(password);
@@ -19,7 +18,6 @@ const Register = async (req, res) => {
 };
 
 const Login = async (req, res) => {
-  // console.log(req.body)
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });

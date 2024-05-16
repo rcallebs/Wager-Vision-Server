@@ -3,7 +3,8 @@ const { Bet } = require("../models");
 
 const index = async (req, res, next) => {
   try {
-    res.json(await Bet.find({}));
+    const userId = res.locals.payload.id;
+    res.json(await Bet.find({ userId }));
   } catch (error) {
     res.status(400).json(error);
   }
