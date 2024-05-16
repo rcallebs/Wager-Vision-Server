@@ -14,7 +14,7 @@ const betHistoryRouter = require("./routes/betHistory.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors({ "Access-Control-Allow-Origin": "*" }));
 app.use(morgan("dev"));
 
 app.use("/bets", betRouter);
