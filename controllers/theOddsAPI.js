@@ -20,7 +20,37 @@ const getOdds = async (req, res) => {
     sportKey = "upcoming",
     regions = "us",
     markets = "h2h",
-    oddsFormat = "decimal",
+    oddsFormat = "american",
+    dateFormat = "iso",
+  } = req.query;
+
+  try {
+    const response = await axios.get(
+      `https://api.the-odds-api.com/v4/sports/${sportKey}/odds`,
+      {
+        params: {
+          apiKey,
+          regions,
+          markets,
+          oddsFormat,
+          dateFormat,
+        },
+      }
+    );
+    res.json(response.data);
+    console.log("Remaining requests", response.headers["x-requests-remaining"]);
+    console.log("Used requests", response.headers["x-requests-used"]);
+  } catch (error) {
+    res.status(error.response.status).json(error.response.data);
+  }
+};
+
+const getNFLOdds = async (req, res) => {
+  const {
+    sportKey = "americanfootball_nfl",
+    regions = "us",
+    markets = "h2h",
+    oddsFormat = "american",
     dateFormat = "iso",
   } = req.query;
 

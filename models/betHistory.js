@@ -3,12 +3,13 @@ const Schema = mongoose.Schema;
 
 const BetHistorySchema = new Schema(
   {
-    userId: String,
-    betId: String,
-    stakeAmount: Number,
-    odds: Number,
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
+    betIds: [{ type: Schema.Types.ObjectId, ref: "Bet" }],
+    totalBets: Number,
+    totalStake: Number,
     outcome: Number,
-    payout: Number,
+    totalWinnings: Number,
+    Profit: Number,
   },
   { timestamps: true }
 );
