@@ -10,6 +10,7 @@ const apiKey = process.env.API_KEY;
 const betRouter = require("./routes/bets");
 const authRouter = require("./routes/AuthRouter.js");
 const apiRouter = require("./routes/theOddsAPI.js");
+const postRouter = require("./routes/posts.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,5 +20,6 @@ app.use(morgan("dev"));
 app.use("/bets", betRouter);
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
+app.use("/posts", postRouter);
 
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
