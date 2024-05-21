@@ -77,8 +77,50 @@ const getNFLOdds = async (req, res) => {
   }
 };
 
+const getNFLMatchOdds = async (req, res) => {
+  const { id } = req.params;
+  const {
+    sportKey = "americanfootball_nfl",
+    regions = "us",
+    markets = "h2h,spreads",
+    oddsFormat = "american",
+    dateFormat = "iso",
+  } = req.query;
+
+  try {
+    const response = await axios.get(
+      `https://api.the-odds-api.com/v4/sports/${sportKey}/odds`,
+      {
+        params: {
+          apiKey,
+          regions,
+          markets,
+          oddsFormat,
+          dateFormat,
+        },
+      }
+    );
+
+    const match = response.data.find((match) => match.id === id);
+
+    if (match) {
+      res.json(match);
+    } else {
+      res.status(404).json({ error: "Match not found" });
+    }
+
+    console.log("Remaining requests", response.headers["x-requests-remaining"]);
+    console.log("Used requests", response.headers["x-requests-used"]);
+  } catch (error) {
+    res
+      .status(error.response?.status || 500)
+      .json(error.response?.data || { error: "An error occurred" });
+  }
+};
+
 module.exports = {
   getSports,
   getOdds,
   getNFLOdds,
+  getNFLMatchOdds,
 };

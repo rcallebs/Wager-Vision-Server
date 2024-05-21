@@ -7,5 +7,6 @@ const apiCtrl = require("../controllers/theOddsAPI");
 router.get("/sports", apiCtrl.getSports);
 router.get("/odds", apiCtrl.getOdds);
 router.get("/odds/nfl", apiCtrl.getNFLOdds);
+router.get("/odds/nfl/:id", apiCtrl.getNFLMatchOdds);
 
 module.exports = router;
