@@ -6,6 +6,7 @@ const BetSchema = new Schema(
     userId: { type: Schema.Types.ObjectId, ref: "User" },
     pick: String,
     betType: String,
+    spread: Number,
     sport: String,
     event: String,
     commenceTime: Date,

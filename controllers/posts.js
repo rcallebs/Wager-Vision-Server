@@ -1,10 +1,39 @@
+// const express = require("express");
+// const { Post } = require("../models");
+
+// const index = async (req, res, next) => {
+//   try {
+//     // const userId = res.locals.payload.id;
+//     res.json(await Post.find({}));
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// };
+
+// const show = async (req, res, next) => {
+//   try {
+//     res.json(await Post.findById(req.params.id));
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// };
+
+// const create = async (req, res, next) => {
+//   try {
+//     req.body.userId = res.locals.payload.id;
+//     const newPost = await Post.create(req.body);
+//     res.json(newPost);
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// };
+
 const express = require("express");
 const { Post } = require("../models");
 
 const index = async (req, res, next) => {
   try {
-    // const userId = res.locals.payload.id;
-    res.json(await Post.find({}));
+    res.json(await Post.find({}).populate("userId", "name"));
   } catch (error) {
     res.status(400).json(error);
   }
@@ -12,7 +41,7 @@ const index = async (req, res, next) => {
 
 const show = async (req, res, next) => {
   try {
-    res.json(await Post.findById(req.params.id));
+    res.json(await Post.findById(req.params.id).populate("userId", "name"));
   } catch (error) {
     res.status(400).json(error);
   }
